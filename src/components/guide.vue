@@ -30,9 +30,6 @@
 
 <style scoped>
   .container{
-    /*position: relative;*/
-    /*left:50%;*/
-    /*transform: translate(-50%,0);*/
   }
   .test{
     font-size: 1rem;
