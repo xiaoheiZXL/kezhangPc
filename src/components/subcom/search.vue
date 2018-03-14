@@ -13,8 +13,8 @@
 		  </div>
 		  <div class="right fl" v-bind:style="{'width':containerWidth*160/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
 					<textarea type="text" name="" id="" v-bind:style="{'width':containerWidth*50/2144+'px','height':containerWidth*430/2144+'px','marginTop':containerWidth*56/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*160/2144+'px '+containerWidth*1000/2144+'px'}" placeholder="输入文字"></textarea>
-					<button class="名家列表" v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*160/2144+'px '+containerWidth*1000/2144+'px'}">列表</button>
-					<button v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*160/2144+'px '+containerWidth*1000/2144+'px'}">搜索</button>
+					<button class="authorlist" v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}">列表</button>
+					<button class="searchbtn" v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}">搜索</button>
 		  </div>
 		</div>
 	</div>
@@ -60,12 +60,20 @@
 
 	}
 	.search .center.searched{
-		background:url('../../../static/images/search-bg2.png') center center no-repeat;
+		/*background:url('../../../static/images/search-bg2.png') center center no-repeat;*/
 	}
 	textarea{
 		padding-top:.2rem;
 	}
 	button{
 		color:transparent;
+	}
+	/*名家列表*/
+	.searchbtn{
+		background: url('../../../static/images/search-btn.png') center center no-repeat;
+	}
+	/*搜索按钮*/
+	.authorlist{
+		background: url('../../../static/images/author.png') center center no-repeat;
 	}
 </style>
