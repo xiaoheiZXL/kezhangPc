@@ -269,8 +269,6 @@
 			      // this.closeAuthorListHandle();
 			      this.$router.push({path:'/'});
 			    }
-
-
 	  	}
 		},
 	  transitions:{
