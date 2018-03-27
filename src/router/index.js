@@ -7,7 +7,8 @@ import item from '../components/subcom/item.vue'
 Vue.use(Router)
 
 export default new Router({
-  routes: [{
+  routes: [
+    {
       path: '/',
       name: 'item',
       component: item
