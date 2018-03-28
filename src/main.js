@@ -15,6 +15,10 @@ import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
 Vue.use(Mint);
 
+import VuePreview from 'vue2-preview'
+Vue.use(VuePreview)
+
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

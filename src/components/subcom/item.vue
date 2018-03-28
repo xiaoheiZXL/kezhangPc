@@ -101,17 +101,18 @@
 					<div class="inner-box">
 						<div class="content" v-bind:style="{'width':containerWidth*590/2144+'px','height':containerWidth*996/2144+'px'}">
 								<!-- 印稿图片 -->
-								<div class="yingao-box">
-									<img src="../../../static/images/guide.png" alt="">
+								<div class="yingao-box" v-for="(item, index) in list">
+									<img src="../../../static/images/guide.png" alt="" class="preview-img" @click="$preview.open(index, list)">
+
 								</div>
 								<!-- 边款图片 -->
-								<div class="biankuan-box">
-									<img src="../../../static/images/guide.png" alt="">
-								</div>
+								<!-- <div class="biankuan-box">
+									<img src="../../../static/images/guide.png" alt=""  data-preview-src="" >
+								</div> -->
 								<!-- 原印图片 -->
-								<div class="yuanyin-box">
-									<img src="../../../static/images/guide.png" alt="">
-								</div>
+								<!-- <div class="yuanyin-box">
+									<img src="../../../static/images/guide.png" alt=""  data-preview-src="" data-preview-group="1" >
+								</div> -->
 
 
 						</div>
@@ -173,8 +174,21 @@
 	export default {
 		data(){
 			return {
-				isShow:false
+				isShow:false,
+				list: [
+				{
+	        src: '../../../static/images/guide.png',
+	        w: 400,
+	        h: 600
+	      }, {
+	        src: '../../../static/images/guide.png',
+	        w: 400,
+	        h: 600
+	      }
+	      ]
 			}
+		},
+		created(){
 		},
 		methods:{
 			toggleShow(){
