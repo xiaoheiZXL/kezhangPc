@@ -5,7 +5,27 @@
 	  'position':'relative'}" >
 		<div class="author clearfix" v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
 			<div class="left fl" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
-				<div v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*20/2144+'px','lineHeight':containerWidth*70/2144+'px'}" class="author-btn">王福庵</div>
+				<div v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*50/2144+'px'}" class="author-btn">{{authorInfo.name}}</div>
+				<router-link v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*560/2144+'px','lineHeight':containerWidth*70/2144+'px'}" class="author-work-btn" :to="'/author-work/'+authorInfo.logiciansId"></router-link>
+			</div>
+			<div class="right fl clearfix" v-bind:style="{'width':containerWidth*650/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
+				<!-- 左侧 -->
+				<div class="inner-left fl" v-bind:style="{'width':containerWidth*325/2144+'px','height':containerWidth*996/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
+					<div class="top">
+						<div class="photo">
+							<img :src="'https://api.duyin.ren/api/aliyun/oss/'+authorInfo.headimgurl" alt="">
+						</div>
+					</div>
+					<div class="bottom">
+						<div class="photo">
+							<img :src="'https://api.duyin.ren/api/aliyun/oss/'+authorInfo.pstamp" alt="">
+						</div>
+					</div>
+				</div>
+				<!-- 右侧 -->
+				<div class="inner-right fl" v-bind:style="{'width':containerWidth*325/2144+'px','height':containerWidth*996/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
+						<p>{{authorInfo.intro}}</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -17,13 +37,31 @@
 	import {Toast} from "mint-ui"
 	export default {
 		data(){
-			return {}
+			return {
+				authorId:'',//名家ID
+				authorInfo:{},//名家详情
+			}
 		},
-		methods:{},
-		created(){},
+		methods:{
+			loadAuthorInfo(){
+				let url = common.apidomain+'api/stamp/logiciansDetailQry';
+				let formData = new FormData();
+				formData.append('logiciansId',this.authorId);
+				ajax(url,'post',formData,(res)=>{
+					if(res.data.code!==200){
+						Toast(res.data.msg);
+						return;
+					}
+					this.authorInfo = res.data.data;
+				});
+			}
+		},
+		created(){
+			this.authorId = this.$route.params.authorId;
+			this.loadAuthorInfo();
+		},
 		computed:{
 		  containerWidth:function(){
-		    // console.log(window.innerWidth);
 		    return window.innerWidth;
 		  }
 		}
@@ -33,14 +71,60 @@
 	.author{
 		background:url('../../../static/images/author-intro-bg.png') center center no-repeat;
 	}
-	.author-btn{
-		display:block;
-		/*background-color: green;*/
-		font-size: .36rem;
-		line-height: 20px ;
-		text-decoration: none;
+/* 	.author-btn{
+	display:block;
+	background-color: green;
+	font-size: .36rem;
+	line-height: 20px ;
+	text-decoration: none;
+	font-family: monospace;
+	color:#fff;
+	font-weight: 700;
+} */
+	.right{
+		/*background-color: rgba(0,0,0,.4);*/
+	}
+	.inner-left,.inner-right{
+		/*background-color: rgba(0,0,0,.4);*/
+	}
+	.inner-left .top{
+		height:50%;
+		/*background-color:yellow;*/
+		overflow: hidden;
+	}
+	.inner-left .top .photo,.inner-left .bottom .photo {
+		height:65%;
+		/*background-color:pink;*/
+		/*padding:40px;*/
+		box-sizing: border-box;
+		width:70%;
+		margin:30px auto;
+		border-radius:10px;
+		border:2px solid #baa99a;
+		overflow:hidden;
+	}
+	.inner-left .bottom .photo{
+		border:2px solid transparent;
+	}
+	.inner-left .photo>img {
+		width:100%;
+		height:100%;
+	}
+	.inner-right {
+		box-sizing: border-box;
+		padding:30px;
+		font-size: 16px;
 		font-family: monospace;
-		color:#fff;
-		font-weight: 700;
+		color:#a38e70;
+		writing-mode:tb-rl;
+		overflow-x:auto;
+	}
+	.inner-right p{
+		line-height: 30px;
+	}
+	/*跳转名家作品按钮*/
+	.author-work-btn{
+		background-color: transparent;
+		display:block;
 	}
 </style>

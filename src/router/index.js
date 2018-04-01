@@ -4,13 +4,13 @@ import guide from '../components/guide'
 import search from '../components/subcom/search.vue'
 import item from '../components/subcom/item.vue'
 import author from '../components/subcom/author.vue'
-
+import authorWork from '../components/subcom/author-work.vue'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/item',
+      path: '/item/:stampId',
       name: 'item',
       component: item
     },
@@ -25,9 +25,14 @@ export default new Router({
       component: search
     },
     {
-      path:'/author',
+      path:'/author/:authorId',
       name:'author',
       component:author
+    },
+    {
+      path:'/author-work/:authorId',
+      name:'author-work',
+      component:authorWork
     }
   ]
 })

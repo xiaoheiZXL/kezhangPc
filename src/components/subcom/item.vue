@@ -95,14 +95,15 @@
 	}" >
 		<div class="item clearfix" v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
 			<div class="left fl" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
-				<router-link v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*20/2144+'px','lineHeight':containerWidth*70/2144+'px'}" class="author-btn" to="/">王福庵</router-link>
+				<router-link v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*50/2144+'px'}" class="author-btn" :to="'/author/'+stampDesc.logiciansId">{{stampDesc.logiciansName}}</router-link>
+				<button disabled v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*560/2144+'px','lineHeight':containerWidth*70/2144+'px','backgroundColor':'#d4ccb9'}"></button>
 			</div>
 			<div class="right fl" v-bind:style="{'width':containerWidth*590/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
 					<div class="inner-box">
 						<div class="content" v-bind:style="{'width':containerWidth*590/2144+'px','height':containerWidth*996/2144+'px'}">
 								<!-- 印稿图片 -->
-								<div class="yingao-box" v-for="(item, index) in list">
-									<img src="../../../static/images/guide.png" alt="" class="preview-img" @click="$preview.open(index, list)">
+								<div class="yingao-box" v-for="(item, index) in prevList" v-show="item.src!=='https://api.duyin.ren/wu-small.png'">
+									<img :src="item.src" alt="" class="preview-img" @click="$preview.open(index, prevList)">
 
 								</div>
 								<!-- 边款图片 -->
@@ -132,7 +133,7 @@
 									<div class="inner-box">
 										<div class="content" v-bind:style="{
 								'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
-											释文：
+											释文：{{stampDesc.chars}}
 										</div>
 									</div>
 							</div>
@@ -142,7 +143,7 @@
 											<div class="inner-box">
 												<div class="content" v-bind:style="{
 										'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
-													边款：
+													边款：{{stampSideIntro}}
 												</div>
 											</div>
 									</div>
@@ -152,7 +153,7 @@
 										<div class="inner-box">
 											<div class="content" v-bind:style="{
 									'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
-												详情：
+												详情：{{stampIntro}}
 											</div>
 										</div>
 									</div>
@@ -175,24 +176,146 @@
 		data(){
 			return {
 				isShow:false,
-				list: [
-				{
-	        src: '../../../static/images/guide.png',
-	        w: 400,
-	        h: 600
-	      }, {
-	        src: '../../../static/images/guide.png',
-	        w: 400,
-	        h: 600
-	      }
+				stampId:'',
+				stampDesc: {},
+		    stampIntro:null,//详情
+		    stampSideIntro:'无',//边款
+		    orgMapBean:null,//
+		    sideUrl:null,
+		    sealUrl:null,
+		    activeId: 0, //名家id
+		    imgList: [],
+				prevList: [
 	      ]
 			}
 		},
 		created(){
+			this.stampId = this.$route.params.stampId;
+			this.loadStampDesc();
 		},
 		methods:{
 			toggleShow(){
 				this.isShow=!this.isShow;
+			},
+			loadStampDesc(){
+				let url = common.apidomain+'api/stamp/stampDetailQry';
+				let formData = new FormData();
+				formData.append('stampId',this.stampId);
+				ajax(url,'post',formData,(res)=>{
+					if(res.data.code!==200){
+						Toast(res.data.msg);
+						return;
+					}
+					var org = {
+						src:'https://api.duyin.ren/wu-small.png',
+						w:425,
+						h:425,
+					}
+					var seal = {
+						src:'https://api.duyin.ren/wu-small.png',
+						w:425,
+						h:425,
+					}
+					var side = {
+						src:'https://api.duyin.ren/wu-small.png',
+						w:425,
+						h:425,
+					}
+	        if (res.data.data.orgMapBean.imgurl!=='null') {
+	          org.src = 'https://api.duyin.ren/api/aliyun/oss/' + res.data.data.orgMapBean.imgurl;
+	          let img = new Image();
+            img.src = org.src;
+            img.onload = function(){
+                org.h = img.height;
+                org.w = img.width;
+            }
+	        }
+	        if (res.data.data.sealMapBean.imgurl!=='null') {
+	          seal.src = 'https://api.duyin.ren/api/aliyun/oss/' + res.data.data.sealMapBean.imgurl;
+	          let img = new Image();
+            img.src = seal.src;
+            img.onload = function(){
+                seal.h = img.height;
+                seal.w = img.width;
+            }
+	        }
+	        if (res.data.data.sideImg[0].imgurl!=='null') {
+	          side.src = 'https://api.duyin.ren/api/aliyun/oss/' + res.data.data.sideImg[0].imgurl;
+	          let img = new Image();
+	           img.src = side.src;
+            img.onload = function(){
+              side.h = img.height;
+              side.w = img.width;
+            }
+	        }
+	        this.prevList = [
+		        {
+		        	src: org.src,
+		        	w:org.w,
+		        	h:org.h
+		        },
+	        	{
+	        		src: side.src,
+	        		w:side.w,
+	        		h:side.h
+	        	},
+	        	{
+	        		src: seal.src,
+	        		w:seal.w,
+	        		h:seal.h
+	        	}
+	        ]
+	          this.stampDesc=res.data.data;
+	        	this.stampIntro=res.data.data.sampIntro||'无';
+	        	// this.activeId=res.data.data.logiciansId;
+	        if(res.data.data.sideImg[0].chars!=='null'){
+	            this.stampSideIntro=res.data.data.sideImg[0].chars;
+	        }
+
+	      })
+
+				// });
+				// var _this = this;
+				//     wx.request({
+				//       url: app.globalData.baseUrl + 'api/stamp/stampDetailQry',
+				//       data: {
+				//         stampId: this.data.stampId
+				//       },
+				//       success: function(res) {
+				//         var orgUrl = 'https://api.duyin.ren/wu-small.png';
+				//         var sealUrl = 'https://api.duyin.ren/wu-small.png';
+				//         var sideUrl = 'https://api.duyin.ren/wu-small.png';
+				//         if (res.data.data.orgMapBean.imgurl!=='null') {
+				//           orgUrl = 'https://api.duyin.ren/api/aliyun/oss/' + res.data.data.orgMapBean.imgurl;
+				//           _this.setData({
+				//             'orgMapBean':orgUrl
+				//           })
+				//         }
+				//         if (res.data.data.sealMapBean.imgurl!=='null') {
+				//           sealUrl = 'https://api.duyin.ren/api/aliyun/oss/' + res.data.data.sealMapBean.imgurl;
+				//           _this.setData({
+				//             'sealUrl':sealUrl
+				//           })
+				//         }
+				//         if (res.data.data.sideImg[0].imgurl!=='null') {
+				//           sideUrl = 'https://api.duyin.ren/api/aliyun/oss/' + res.data.data.sideImg[0].imgurl;
+				//           _this.setData({
+				//             'sideUrl':'https://api.duyin.ren/api/aliyun/oss/'+res.data.data.sideImg[0].imgurl
+				//           })
+				//         }
+				//         _this.setData({
+				//           'stampDesc': res.data.data,
+				//           'stampIntro':res.data.data.sampIntro||'无',
+				//           'activeId': res.data.data.logiciansId,
+				//           'imgList': [sealUrl + '', sideUrl + '', orgUrl + '']
+				//         });
+				//         if(res.data.data.sideImg[0].chars!=='null'){
+				//           _this.setData({
+				//             'stampSideIntro':res.data.data.sideImg[0].chars
+				//           })
+				//         }
+				//       }
+				//     });
 			}
 		},
 	  transitions:{
@@ -203,7 +326,6 @@
 		},
 		computed:{
 		  containerWidth:function(){
-		    // console.log(window.innerWidth);
 		    return window.innerWidth;
 		  }
 		}

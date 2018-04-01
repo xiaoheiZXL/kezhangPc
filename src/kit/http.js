@@ -80,10 +80,10 @@ export function ajax(url, ajaxType, params, success) {
   } else if (ajaxType == 'get') {
     axios.get(
       url, {
-        headers: {
-          'Content-Type': 'application/json',
-          'charset': 'utf-8'
-        }
+        // headers: {
+        //   'Content-Type': 'application/json',
+        //   'charset': 'utf-8'
+        // }
       }
     ).then((res) => {
       success(res);
