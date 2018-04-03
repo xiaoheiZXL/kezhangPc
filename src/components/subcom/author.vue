@@ -71,16 +71,7 @@
 	.author{
 		background:url('../../../static/images/author-intro-bg.png') center center no-repeat;
 	}
-/* 	.author-btn{
-	display:block;
-	background-color: green;
-	font-size: .36rem;
-	line-height: 20px ;
-	text-decoration: none;
-	font-family: monospace;
-	color:#fff;
-	font-weight: 700;
-} */
+
 	.right{
 		/*background-color: rgba(0,0,0,.4);*/
 	}
@@ -114,7 +105,7 @@
 		box-sizing: border-box;
 		padding:30px;
 		font-size: 16px;
-		font-family: monospace;
+		font-family: 'FangSong_GB2312';
 		color:#a38e70;
 		writing-mode:tb-rl;
 		overflow-x:auto;

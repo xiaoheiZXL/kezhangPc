@@ -6,11 +6,10 @@
 	/*跳转*/
 	.author-btn{
 		display:block;
-		/*background-color: green;*/
 		font-size: .36rem;
 		line-height: 40px;
 		text-decoration: none;
-		font-family: monospace;
+		font-family: 'FangSong_GB2312';
 		color:#fff;
 		font-weight: 700;
 	}
@@ -22,9 +21,12 @@
 			position: absolute; left: 0;
 	    overflow-x: hidden;
 	    overflow-y: scroll;
+
 	}
 	.right .content{
 		position: relative;
+		box-sizing: border-box;
+		/*background-color: pink;*/
 	}
 	.outer-box{
 		/*background-color: #baa99a;*/
@@ -62,12 +64,19 @@
 		/*left: 0;*/
     overflow-x: hidden;
     overflow-y: scroll;
-    font-size: 14px;
+    font-size: 18px;
     line-height: .6rem;
     text-align: left;
     box-sizing: border-box;
-    padding:20px;
-    font-family: monospace;
+    padding:5px 20px;
+    font-family: 'FangSong_GB2312';
+    /*padding-right:100px;*/
+	}
+	.stamp-desc .xiangqing .inner-box .content,.stamp-desc .biankuan .inner-box .content,.stamp-desc .yuanyin .inner-box .content{
+			/*background-color: pink;*/
+			box-sizing: border-box;
+			/*font-size: */
+			/*width:90%;*/
 	}
 	/*印稿图片*/
 	.yingao-box,.biankuan-box,.yuanyin-box{
@@ -132,8 +141,8 @@
 									'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
 									<div class="inner-box">
 										<div class="content" v-bind:style="{
-								'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
-											释文：{{stampDesc.chars}}
+								'width':containerWidth*540/2144+'px','height':containerWidth*137/2144+'px'}">
+											<strong>释文：</strong>{{stampDesc.chars}}
 										</div>
 									</div>
 							</div>
@@ -142,8 +151,8 @@
 									'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
 											<div class="inner-box">
 												<div class="content" v-bind:style="{
-										'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
-													边款：{{stampSideIntro}}
+										'width':containerWidth*540/2144+'px','height':containerWidth*137/2144+'px'}">
+													<strong>边款：</strong>{{stampSideIntro}}
 												</div>
 											</div>
 									</div>
@@ -152,8 +161,8 @@
 									'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
 										<div class="inner-box">
 											<div class="content" v-bind:style="{
-									'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
-												详情：{{stampIntro}}
+									'width':containerWidth*540/2144+'px','height':containerWidth*137/2144+'px'}">
+												<strong>详情：</strong>{{stampIntro}}
 											</div>
 										</div>
 									</div>
@@ -266,7 +275,7 @@
 	        	}
 	        ]
 	          this.stampDesc=res.data.data;
-	        	this.stampIntro=res.data.data.sampIntro||'无';
+	        	this.stampIntro=res.data.data.stampIntro||'无';
 	        	// this.activeId=res.data.data.logiciansId;
 	        if(res.data.data.sideImg[0].chars!=='null'){
 	            this.stampSideIntro=res.data.data.sideImg[0].chars;

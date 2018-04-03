@@ -66,7 +66,7 @@
 		box-sizing: border-box;
 		padding-top:.2rem;
 		font-size: .3rem;
-		font-family: monospace;
+		font-family: 'FangSong_GB2312';
 		border:1px solid #fff;
 		margin-right:-1px;
 		margin-top:-1px;
@@ -107,7 +107,7 @@
 	.stamp-item p{
 		width:20%;
 		margin:0px auto;
-		font-family: monospace;
+		font-family: 'FangSong_GB2312';
 		font-size: 18px;
 		line-height: 30px;
 		text-overflow:ellipsis;
@@ -115,6 +115,10 @@
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 4;
 		overflow: hidden;
+	}
+	.input-area{
+		color:#a38e70;
+		font-family:'FangSong_GB2312' ;
 	}
 </style>
 <template>
@@ -125,7 +129,7 @@
 	}" >
 		<div class="search clearfix" v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
 		  <div class="left fl" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
-		  	<router-link :to="'/author/'+searchResult.logiciansId" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*50/2144+'px'}" class="author-btn">{{searchResult.logiciansName}}</router-link>
+		  	<router-link :to="'/author/'+searchResult.logiciansId" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*45/2144+'px'}" class="author-btn">{{searchResult.logiciansName}}</router-link>
 		  	<button v-bind:disabled="isDisabled" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*360/2144+'px','lineHeight':containerWidth*70/2144+'px'}" class="prev-btn" v-on:click="prevSearch"></button>
 		  	<button v-bind:disabled="isDisabled" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*-10/2144+'px','lineHeight':containerWidth*70/2144+'px'}" class="next-btn" v-on:click="nextSearch"></button>
 		  </div>
@@ -158,7 +162,7 @@
 		  </div>
 		  <div class="right fl" v-bind:style="{'width':containerWidth*160/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
 
-					<textarea type="text" name="" id="" v-model="chars" v-bind:style="{'width':containerWidth*50/2144+'px','height':containerWidth*430/2144+'px','marginTop':containerWidth*56/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*160/2144+'px '+containerWidth*1000/2144+'px'}" placeholder="输入文字"></textarea>
+					<textarea type="text" class="input-area" id="" v-model="chars" v-bind:style="{'width':containerWidth*50/2144+'px','height':containerWidth*430/2144+'px','marginTop':containerWidth*56/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*160/2144+'px '+containerWidth*1000/2144+'px'}" placeholder="输入文字"></textarea>
 					<button class="authorlist" v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}" v-on:click="toggleAuthorList">列表</button>
 					<button class="searchbtn" v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}" v-on:click.prevent="search">搜索</button>
 		  </div>

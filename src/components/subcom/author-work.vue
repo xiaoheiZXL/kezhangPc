@@ -6,7 +6,7 @@
 	}" >
 	<div class="author-work clearfix" v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
 		<div class="left fl" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
-			<router-link :to="'/author/'+searchResult.logiciansId" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*50/2144+'px'}" class="author-btn">{{searchResult.logiciansName}}</router-link>
+			<router-link :to="'/author/'+searchResult.logiciansId" v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*45/2144+'px'}" class="author-btn">{{searchResult.logiciansName}}</router-link>
 			<button v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*360/2144+'px','lineHeight':containerWidth*70/2144+'px'}" class="prev-btn" v-on:click="prevSearch"></button>
 			<button v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*-10/2144+'px','lineHeight':containerWidth*70/2144+'px'}" class="next-btn" v-on:click="nextSearch"></button>
 		</div>
@@ -163,7 +163,7 @@ import {Toast} from "mint-ui"
 .stamp-item p{
 	width:20%;
 	margin:0px auto;
-	font-family: monospace;
+	font-family: 'FangSong_GB2312';
 	font-size: 18px;
 	line-height: 30px;
 	text-overflow:ellipsis;
