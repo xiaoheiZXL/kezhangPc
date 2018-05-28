@@ -9,32 +9,26 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
-  base: './',
-  routes: [
-    {
-      path: '/item/:stampId',
-      name: 'item',
-      component: item
-    },
-    {
-      path: '/',
-      name: 'guide',
-      component: guide
-    },
-    {
-      path: '/search',
-      name: 'search',
-      component: search
-    },
-    {
-      path:'/author/:authorId',
-      name:'author',
-      component:author
-    },
-    {
-      path:'/author-work/:authorId',
-      name:'author-work',
-      component:authorWork
-    }
-  ]
+  base: '/pc',
+  routes: [{
+    path: '/item/:stampId',
+    name: 'item',
+    component: item
+  }, {
+    path: '/',
+    name: 'guide',
+    component: guide
+  }, {
+    path: '/search',
+    name: 'search',
+    component: search
+  }, {
+    path: '/author/:authorId',
+    name: 'author',
+    component: author
+  }, {
+    path: '/author-work/:authorId',
+    name: 'author-work',
+    component: authorWork
+  }]
 })

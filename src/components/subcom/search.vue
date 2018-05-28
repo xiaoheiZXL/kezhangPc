@@ -186,7 +186,7 @@
 	      authorId:-1,//被选择名家id
 	      allNum:0,
 	      lastNum:0,
-	      chars:'先',//关键字
+	      chars:'',//关键字
 	      searchResult:[],//
 	      preAllNum:0,
 	      isSearched:false
