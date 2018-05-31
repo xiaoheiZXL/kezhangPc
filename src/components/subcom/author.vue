@@ -3,6 +3,10 @@
 	  'height':containerWidth/1.5+'px',
 	  'backgroundSize':containerWidth+'px '+containerWidth/1.5+'px',
 	  'position':'relative'}">
+    <!-- home-btn -->
+    <router-link to="/search" class="home-btn" :style="{'left':containerWidth*892/2144+'px','top':containerWidth*10/2144+'px',
+    'backgroundSize':containerWidth*89/2144+'px '+containerWidth*130/2144+'px',
+    'width':containerWidth*69/2144+'px','height':containerWidth*130/2144+'px'}"></router-link>
     <div class="author clearfix"
          v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
       <div class="left fl"
@@ -136,5 +140,12 @@
   .author-work-btn {
     background-color: transparent;
     display: block;
+  }
+
+  .home-btn {
+    /*background:rgba(1,1,0,0.5) url('../../../static/images/home-btn.png') no-repeat center center;*/
+    position: absolute;
+    z-index: 99999;
+    /*left: 0;*/
   }
 </style>

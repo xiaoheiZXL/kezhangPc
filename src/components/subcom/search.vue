@@ -156,9 +156,9 @@
 	  'position':'relative'
 	}">
     <!-- home-btn -->
-    <button class="home-btn" :style="{'left':containerWidth*894/2144+'px','top':containerWidth*40/2144+'px',
-    'backgroundSize':containerWidth*69/2144+'px '+containerWidth*100/2144+'px',
-    'width':containerWidth*69/2144+'px','height':containerWidth*100/2144+'px'}"></button>
+    <router-link to="/search" class="home-btn" :style="{'left':containerWidth*892/2144+'px','top':containerWidth*10/2144+'px',
+    'backgroundSize':containerWidth*89/2144+'px '+containerWidth*130/2144+'px',
+    'width':containerWidth*69/2144+'px','height':containerWidth*130/2144+'px'}"></router-link>
     <div class="search clearfix"
          v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
       <div class="left fl"
