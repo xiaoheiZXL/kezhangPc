@@ -124,18 +124,33 @@
     margin: 0 auto;
   }
 
-  .stamp-item p {
-    width: 20%;
-    margin: 0px auto;
-    font-family: 'FangSong_GB2312';
-    font-size: 18px;
-    line-height: 30px;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-    overflow: hidden;
-  }
+   .stamp-item p {
+     width: 20%;
+     margin: 0px auto;
+     font-family: 'FangSong_GB2312';
+     font-size: 18px;
+     line-height: 30px;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+     -webkit-box-orient: vertical;
+     -webkit-line-clamp: 4;
+
+     overflow: hidden;
+
+      position:relative;
+      /*line-height:1.4em;*/
+      /* 3 times the line-height to show 3 lines */
+      height:112px;
+      overflow:hidden;
+   }
+  .stamp-item p::after {
+       content:"...";
+       font-weight:bold;
+       position:absolute;
+       bottom:0;
+       right:0;
+       padding:0 20px 1px 45px;
+   }
 
   .input-area {
     color: #a38e70;

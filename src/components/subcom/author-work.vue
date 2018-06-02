@@ -164,7 +164,7 @@
     height: 50%;
     box-sizing: border-box;
     font-size: 14px;
-
+		/*overflow: hidden;*/
   }
 
   .stamp-item .top {
@@ -191,7 +191,22 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
+
     overflow: hidden;
+
+     position:relative;
+     /*line-height:1.4em;*/
+     /* 3 times the line-height to show 3 lines */
+     height:112px;
+     overflow:hidden;
+  }
+ .stamp-item p::after {
+      content:"...";
+      font-weight:bold;
+      position:absolute;
+      bottom:0;
+      right:0;
+      padding:0 20px 1px 45px;
   }
 
   .home-btn {
