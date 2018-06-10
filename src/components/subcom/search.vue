@@ -53,7 +53,7 @@
   .outer-box {
     background-color: #baa99a;
     position: absolute;
-    left: 0;
+    /*left: 0;*/
     overflow: hidden;
   }
 
@@ -206,12 +206,10 @@
           </ul>
         </div>
         <!-- 名家列表 -->
-        <transition
-          enter-active-class="animated fadeInRight"
-          leave-active-class="animated fadeOutRight"
-        >
-          <div class="outer-box" v-if="isShow"
-               v-bind:style="{'width':containerWidth*540/2144+'px','height':containerWidth*432/2144+'px','bottom':containerWidth*57/2144+'px'}">
+
+          <div id="authorList"  class="outer-box"
+               v-bind:style="{'height':containerWidth*432/2144+'px','bottom':containerWidth*57/2144+'px','left':containerWidth*432/2144+'px'}"
+          >
             <div class="inner-box">
               <div class="author-list">
                 <div class="author-item" v-bind:data-sousuo="item.logiciansId"
@@ -222,7 +220,6 @@
               </div>
             </div>
           </div>
-        </transition>
       </div>
       <div class="right fl"
            v-bind:style="{'width':containerWidth*160/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
@@ -231,7 +228,7 @@
                   v-bind:style="{'width':containerWidth*50/2144+'px','height':containerWidth*430/2144+'px','marginTop':containerWidth*56/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*160/2144+'px '+containerWidth*1000/2144+'px'}"
                   placeholder="输入文字"></textarea>
         <button class="authorlist"
-                v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}"
+                v-bind:style="{'width':containerWidth*108/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}"
                 v-on:click="toggleAuthorList">列表
         </button>
         <button class="searchbtn"
@@ -253,7 +250,6 @@
     data() {
       return {
         // containerWidth:100
-        isShow: false,
         authorList: [],
         isDisabled: true,
         authorId: -1,//被选择名家id
@@ -272,7 +268,14 @@
     },
     methods: {
       toggleAuthorList() {
-        this.isShow = !this.isShow;
+        if(parseInt($('#authorList').css('width'))==0){
+	        $('#authorList').animate({
+	        	'width':this.containerWidth*540/2144+'px',
+	        	'left':0
+	        },500);
+        }else{
+	        $('#authorList').animate({'width':0,'left':this.containerWidth*540/2144+'px'},500);
+	        }
       },
       loadAuthorList() {
         let url = common.apidomain + 'api/stamp/listCarvingMaster';

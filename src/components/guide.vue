@@ -1,12 +1,4 @@
 <template>
-  <!-- <div class="container" v-bind:style="{'width':containerWidth+'rem',
-  height:containerWidth/1.5+'rem',
-  'backgroundSize':containerWidth+'rem '+containerWidth/1.5+ 'rem'
-}" >
-    <router-link to="/search">
-      <div></div>
-    </router-link>
-  </div> -->
     <div class="container" v-bind:style="{'width':containerWidth+'px',
     height:containerWidth/1.5+'px',
     'backgroundSize':containerWidth+'px '+containerWidth/1.5+'px',

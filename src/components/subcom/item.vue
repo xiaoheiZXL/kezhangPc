@@ -148,28 +148,14 @@
             <div class="yingao-box" v-for="(item, index) in prevList"
                  v-show="item.src!=='https://api.duyin.ren/wu-small.png'">
               <img :src="item.src" alt="" class="preview-img" @click="$preview.open(index, prevList)">
-
             </div>
-            <!-- 边款图片 -->
-            <!-- <div class="biankuan-box">
-                                <img src="../../../static/images/guide.png" alt=""  data-preview-src="" >
-                            </div> -->
-            <!-- 原印图片 -->
-            <!-- <div class="yuanyin-box">
-                                <img src="../../../static/images/guide.png" alt=""  data-preview-src="" data-preview-group="1" >
-                            </div> -->
-
-
           </div>
         </div>
       </div>
       <!-- 印章详情 -->
-      <transition
-        enter-active-class="animated fadeInRight"
-        leave-active-class="animated fadeOutRight"
-      >
-        <div class="outer-box" v-if="isShow"
-             v-bind:style="{'width':containerWidth*590/2144+'px','height':containerWidth*412/2144+'px','bottom':containerWidth*90/2144+'px','left':containerWidth*50/2144+'px'}">
+
+        <div id="authorList" class="outer-box"
+             v-bind:style="{'height':containerWidth*412/2144+'px','bottom':containerWidth*90/2144+'px','left':containerWidth*590/2144+'px'}">
           <div class="inner-box">
             <div class="stamp-desc">
               <!-- 原印 -->
@@ -205,7 +191,6 @@
             </div>
           </div>
         </div>
-      </transition>
       <button class="show-desc"
               v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*460/2144+'px','marginTop':containerWidth*685/2144+'px'}"
               v-on:click="toggleShow">
@@ -242,7 +227,14 @@
     },
     methods: {
       toggleShow() {
-        this.isShow = !this.isShow;
+         if(parseInt($('#authorList').css('width'))==0){
+                  $('#authorList').animate({
+                    'width':this.containerWidth*590/2144+'px',
+                    'left':this.containerWidth*50/2144+'px'
+                  },500);
+                }else{
+                  $('#authorList').animate({'width':0,'left':this.containerWidth*590/2144+'px'},500);
+                  }
       },
       loadStampDesc() {
         let url = common.apidomain + 'api/stamp/stampDetailQry';

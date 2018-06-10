@@ -41,25 +41,6 @@ axios.interceptors.response.use(
     }
     return Promise.reject(error.response.data) // 返回接口返回的错误信息
   });
-
-// export function prevImg(target, imgObj) {
-//   let reader = new FileReader();
-//   reader.readAsDataURL(target.files[0]); // 读出 base64
-//   reader.onloadend = function() {
-//     imgObj.src = reader.result;
-//   }
-// }
-
-// export function uploadImg(target, success) {
-//   let formData = new FormData();
-
-//   formData.append('file', target.files[0]);
-
-//   formData.append('type', 'test');
-
-//   ajax(uploadUrl, 'post', formData, success)
-// }
-
 // 封装通用请求方法:
 export function ajax(url, ajaxType, params, success) {
   // post 请求

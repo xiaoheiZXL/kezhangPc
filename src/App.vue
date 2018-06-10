@@ -8,12 +8,6 @@
   export default {
     name: 'App'
   }
-  // console.log('-----------');
-  // console.log(window.innerWidth);
-
-
-  // container.style.width = width+'px';
-
 </script>
 
 <style>
