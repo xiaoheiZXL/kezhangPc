@@ -17,7 +17,6 @@
     name: 'guide',
     data () {
       return {
-        // containerWidth:100
       }
     },
     created:function(){
@@ -25,7 +24,6 @@
     },
     computed:{
       containerWidth:function(){
-        console.log(window.innerWidth);
         return window.innerWidth;
       }
     }
