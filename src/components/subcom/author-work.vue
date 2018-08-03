@@ -1,35 +1,60 @@
 <template>
-  <div class="container" v-bind:style="{'width':containerWidth+'px',
+  <div 
+    class="container"
+    :style="{'width':containerWidth+'px',
 	  'height':containerWidth/1.5+'px',
 	  'backgroundSize':containerWidth+'px '+containerWidth/1.5+'px',
 	  'position':'relative'
 	}">
     <!-- home-btn -->
-    <router-link to="/search" class="home-btn" :style="{'left':containerWidth*892/2144+'px','top':containerWidth*10/2144+'px',
+    <a
+     href="#"
+     class="home-btn"
+     @click="$router.go(-1)"
+     :style="{'left':containerWidth*892/2144+'px','top':containerWidth*10/2144+'px',
     'backgroundSize':containerWidth*89/2144+'px '+containerWidth*130/2144+'px',
-    'width':containerWidth*69/2144+'px','height':containerWidth*130/2144+'px'}"></router-link>
-    <div class="author-work clearfix"
-         v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
-      <div class="left fl"
-           v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
-        <router-link v-show='searchResult.logiciansId' :to="'/author/'+searchResult.logiciansId"
-                     v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*45/2144+'px'}"
-                     class="author-btn">{{searchResult.logiciansName}}
+    'width':containerWidth*69/2144+'px','height':containerWidth*130/2144+'px'}"
+    ></a>
+    <div 
+      class="author-work clearfix"
+         :style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}"
+         >
+      <div
+        class="left fl"
+        :style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}"
+      >
+        <router-link
+          v-show='searchResult.logiciansId'
+          :to="'/author/'+searchResult.logiciansId"
+          :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*45/2144+'px'}"
+          class="author-btn">
+          {{searchResult.logiciansName}}
         </router-link>
         <button
-          v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*360/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
-          class="prev-btn" v-on:click="prevSearch"></button>
+          :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*360/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
+          class="prev-btn"
+          @click="prevSearch"
+        ></button>
         <button
-          v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*-10/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
-          class="next-btn" v-on:click="nextSearch"></button>
+          :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*-10/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
+          class="next-btn"
+          @click="nextSearch"></button>
       </div>
-      <div class="right fl clearfix"
-           v-bind:style="{'width':containerWidth*650/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
+      <div 
+        class="right fl clearfix"
+        :style="{'width':containerWidth*650/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}"
+      >
         <ul class="stamp-list clearfix">
-          <li class="stamp-item fl" v-for="(item,index) in searchResult.stampList">
-            <router-link :to="'/item/'+item.stampId">
+          <li
+            class="stamp-item fl"
+            v-for="(item,index) in searchResult.stampList"
+            :key=index
+          >
+            <router-link
+              :to="'/item/'+item.stampId"
+            >
               <div class="top">
-                <img :src="'https://api.duyin.ren/api/aliyun/oss/'+item.showImg" alt="">
+                <img :src="'https://api.duyin.ren/api/aliyun/oss/'+item.showImg">
               </div>
               <p>{{item.chars}}</p>
             </router-link>
@@ -98,37 +123,6 @@
           this.lastNum = res.data.data.stampList.length;
           this.preAllNum = res.data.data.preAllNum;
         })
-        // wx.request({
-        //   url:app.globalData.baseUrl+'api/stamp/stampsQuery',
-        //   type:'post',
-        //   data:{
-        //     'logiciansId':this.data.activeId,//名家id
-        //     'size':8,//每页显示的数据个数
-        //     'allNum':allNum,
-        //     'lastNum':lastNum
-        //   },
-        //   dataType:'json',
-        //   success:function(res){
-        //     // 错误处理
-        //     if(res.statusCode!=200){
-        //       app.toast('获取名家列表失败');
-        //       return;
-        //     }
-        //     //未请求到数据
-        //     if(res.data.data.stampList.length == 0){
-        //       app.toast('无更多内容');
-        //       return;
-        //     }
-        //     // 设置最新的allNum（用于翻页）
-        //     _this.setData({
-        //       'searchResult':res.data.data,
-        //       'allNum':res.data.data.allNum,
-        //       'lastNum':res.data.data.stampList.length,
-        //       'preAllNum':res.data.data.preAllNum,
-        //       'disabled':false
-        //     });
-        //   }
-        // });
       }
     },
     created() {
@@ -148,10 +142,6 @@
 
   .author-work {
     background: url('../../../static/images/author-work-bg.png') center center no-repeat;
-  }
-
-  .right {
-
   }
 
   .right .stamp-list {
