@@ -178,7 +178,7 @@
     font-size: 18px;
     line-height: 30px;
     text-overflow: ellipsis;
-    display: -webkit-box;
+    /*display: -webkit-box;*/
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
 

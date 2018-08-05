@@ -294,9 +294,9 @@
           }
           this.prevList = [
             {
-              src: org.src,
-              w: org.w,
-              h: org.h
+              src: seal.src,
+              w: seal.w,
+              h: seal.h
             },
             {
               src: side.src,
@@ -304,10 +304,11 @@
               h: side.h
             },
             {
-              src: seal.src,
-              w: seal.w,
-              h: seal.h
+              src: org.src,
+              w: org.w,
+              h: org.h
             }
+
           ]
           this.stampDesc = res.data.data;
           this.stampIntro = res.data.data.stampIntro || '无';
