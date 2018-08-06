@@ -10,7 +10,7 @@
     <a
      href="#"
      class="home-btn"
-     @click="$router.go(-1)"
+     @click="goBack"
      :style="{'left':containerWidth*892/2144+'px','top':containerWidth*10/2144+'px',
     'backgroundSize':containerWidth*89/2144+'px '+containerWidth*130/2144+'px',
     'width':containerWidth*69/2144+'px','height':containerWidth*130/2144+'px'}"
@@ -76,7 +76,9 @@
         searchResult: [],
         allNum: 0,
         lastNum: 0,
-        preAllNum: 0
+        preAllNum: 0,
+        saveAllNum:0,
+        saveLastNum:0,
       }
     },
     computed: {
@@ -85,6 +87,9 @@
       }
     },
     methods: {
+      goBack(){
+        window.history.back(-1)
+      },
       prevSearch() {
         if (this.preAllNum < 0) {
           this.preAllNum = 0;
@@ -98,6 +103,8 @@
         this.search(this.allNum, this.lastNum);
       },
       search(allNum, lastNum) {
+        this.saveAllNum = allNum;
+        this.saveLastNum = lastNum;
         var allNum = (allNum - 0) || 0;
         var lastNum = (lastNum - 0) || 0;
         var url = common.apidomain + 'api/stamp/stampsQuery';
@@ -126,8 +133,15 @@
       }
     },
     created() {
+      console.log('created');
       this.authorId = this.$route.params.authorId;
       this.search();
+    },
+    activated(){
+      console.log('activated');
+      this.authorId = this.$route.params.authorId;
+      this.search(this.saveAllNum, this.saveLastNum);
+      // this.search(this.allNum,this.lastNum);
     }
   }
 </script>

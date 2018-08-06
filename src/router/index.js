@@ -29,6 +29,9 @@ export default new Router({
   }, {
     path: '/author-work/:authorId',
     name: 'author-work',
-    component: authorWork
+    component: authorWork,
+    meta: {
+      keepAlive: true // true 表示需要使用缓存
+    }
   }]
 })

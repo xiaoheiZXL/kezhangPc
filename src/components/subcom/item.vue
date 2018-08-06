@@ -128,7 +128,7 @@
     <a
      href="#"
      class="home-btn"
-     @click="$router.go(-1)"
+     @click="goBack"
      :style="{'left':containerWidth*892/2144+'px','top':containerWidth*10/2144+'px',
     'backgroundSize':containerWidth*89/2144+'px '+containerWidth*130/2144+'px',
     'width':containerWidth*69/2144+'px','height':containerWidth*130/2144+'px'}"
@@ -231,6 +231,9 @@
       this.loadStampDesc();
     },
     methods: {
+      goBack(){
+        window.history.back(-1)
+      },
       toggleShow() {
          if(parseInt($('#authorList').css('width'))==0){
                   $('#authorList').animate({
