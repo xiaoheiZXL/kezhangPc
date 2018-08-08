@@ -165,7 +165,7 @@
   }
 </style>
 <template>
-  <div class="container" v-bind:style="{'width':containerWidth+'px',
+  <div class="container" :style="{'width':containerWidth+'px',
 	  'height':containerWidth/1.5+'px',
 	  'backgroundSize':containerWidth+'px '+containerWidth/1.5+'px',
 	  'position':'relative'
@@ -180,25 +180,25 @@
     'width':containerWidth*69/2144+'px','height':containerWidth*130/2144+'px'}"
     ></a>
     <div class="search clearfix"
-         v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
+         :style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
       <div class="left fl"
-           v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
+           :style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
         <router-link :to="'/author/'+searchResult.logiciansId"
-                     v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*45/2144+'px'}"
+                     :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*45/2144+'px'}"
                      class="author-btn" v-show="searchResult.logiciansId">{{searchResult.logiciansName}}
         </router-link>
-        <button v-bind:disabled="isDisabled"
-                v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*360/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
-                class="prev-btn" v-on:click="prevSearch"></button>
-        <button v-bind:disabled="isDisabled"
-                v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*-10/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
-                class="next-btn" v-on:click="nextSearch"></button>
+        <button :disabled="isDisabled"
+                :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*360/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
+                class="prev-btn" @click="prevSearch"></button>
+        <button :disabled="isDisabled"
+                :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*-10/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
+                class="next-btn" @click="nextSearch"></button>
       </div>
       <div class="center fl"
-           v-bind:style="{'width':containerWidth*480/2144+'px','height':containerWidth*1005/2144+'px','marginTop':containerWidth*140/2144+'px','backgroundSize':containerWidth*485/2144+'px '+containerWidth*1005/2144+'px'}"
-           v-bind:class="{searched:isSearched}">
+           :style="{'width':containerWidth*480/2144+'px','height':containerWidth*1005/2144+'px','marginTop':containerWidth*140/2144+'px','backgroundSize':containerWidth*485/2144+'px '+containerWidth*1005/2144+'px'}"
+           :class="{searched:isSearched}">
         <div class="search-result"
-             v-bind:style="{'width':containerWidth*480/2144+'px','height':containerWidth*1005/2144+'px','backgroundSize':containerWidth*485/2144+'px '+containerWidth*1005/2144+'px'}">
+             :style="{'width':containerWidth*480/2144+'px','height':containerWidth*1005/2144+'px','backgroundSize':containerWidth*485/2144+'px '+containerWidth*1005/2144+'px'}">
           <ul class="stamp-list clearfix">
             <li class="stamp-item fl" v-for="(item,index) in searchResult.stampList">
               <router-link :to="'/item/'+item.stampId">
@@ -213,32 +213,32 @@
         <!-- 名家列表 -->
 
           <div id="authorList"  class="outer-box"
-               v-bind:style="{'height':containerWidth*432/2144+'px','bottom':containerWidth*57/2144+'px','left':containerWidth*432/2144+'px'}"
+               :style="{'height':containerWidth*432/2144+'px','bottom':containerWidth*57/2144+'px','left':containerWidth*432/2144+'px'}"
           >
             <div class="inner-box">
               <div class="author-list">
-                <div class="author-item" v-bind:data-sousuo="item.logiciansId"
-                     v-bind:class="{'active':authorId==item.logiciansId}" v-for="(item,index) in authorList"
-                     v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px'}"
-                     v-on:click="selectAuthor"> ⊙{{item.name}}
+                <div class="author-item" :data-sousuo="item.logiciansId"
+                     :class="{'active':authorId==item.logiciansId}" v-for="(item,index) in authorList"
+                     :style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px'}"
+                     @click="selectAuthor"> ⊙{{item.name}}
                 </div>
               </div>
             </div>
           </div>
       </div>
       <div class="right fl"
-           v-bind:style="{'width':containerWidth*160/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
+           :style="{'width':containerWidth*160/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
 
         <textarea type="text" class="input-area" id="" v-model="chars"
-                  v-bind:style="{'width':containerWidth*50/2144+'px','height':containerWidth*430/2144+'px','marginTop':containerWidth*56/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*160/2144+'px '+containerWidth*1000/2144+'px'}"
+                  :style="{'width':containerWidth*50/2144+'px','height':containerWidth*430/2144+'px','marginTop':containerWidth*56/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*160/2144+'px '+containerWidth*1000/2144+'px'}"
                   placeholder="输入文字"></textarea>
         <button class="authorlist"
-                v-bind:style="{'width':containerWidth*108/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}"
-                v-on:click="toggleAuthorList">列表
+                :style="{'width':containerWidth*108/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}"
+                @click="toggleAuthorList">列表
         </button>
         <button class="searchbtn"
-                v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}"
-                v-on:click.prevent="search">搜索
+                :style="{'width':containerWidth*60/2144+'px','height':containerWidth*216/2144+'px','marginLeft':containerWidth*15/2144+'px','backgroundSize':containerWidth*60/2144+'px '+containerWidth*216/2144+'px'}"
+                @click.prevent="search">搜索
         </button>
       </div>
     </div>
@@ -271,6 +271,9 @@
       this.loadAuthorList();
       // this.search();
     },
+    activated(){
+      // this.loadAuthorList();
+    },
     methods: {
       goBack(){
         window.history.back(-1)
@@ -283,7 +286,7 @@
 	        },500);
         }else{
 	        $('#authorList').animate({'width':0,'left':this.containerWidth*540/2144+'px'},500);
-	        }
+        }
       },
       loadAuthorList() {
         let url = common.apidomain + 'api/stamp/listCarvingMaster';
@@ -398,46 +401,12 @@
             this.authorId = res.data.data.logiciansId;
             // this.searched: true
           });
-
-          // wx.request({
-          //   url: app.globalData.baseUrl + 'api/stamp/stampsQuery',
-          //   type: 'post',
-          //   data: {
-          //     'logiciansId': this.data.activeId, //名家id
-          //     'chars': this.data.chars, //搜索印章关键字
-          //     'allNum': allNum, //
-          //     'lastNum': lastNum,
-          //     'size': 6, //每页显示的数据个数
-          //   },
-          //   dataType: 'json',
-          //   success: function(res) {
-          //     // 错误处理
-          //     if (res.statusCode != 200) {
-          //       app.toast('获取名家列表失败');
-          //       return;
-          //     }
-          //     //未请求到数据
-          //     if (res.data.data.stampList.length == 0) {
-          //       app.toast('无更多内容');
-          //       return;
-          //     }
-          //     _this.setData({
-          //       'searchResult': res.data.data,
-          //       'allNum': res.data.data.allNum,
-          //       'lastNum': res.data.data.stampList.length,
-          //       'preAllNum': res.data.data.preAllNum,
-          //       'firstId': res.data.data.logiciansId,
-          //       'searched': true
-          //     });
-          //   }
-          // });
-          // 关闭名家列表
-          // this.closeAuthorListHandle();
         }
         // 选择名家、未选择文字
         if (this.authorId !== -1 && this.chars.trim() == '') {
           this.$router.push({path: '/author/' + this.authorId});
         }
+        this.toggleAuthorList();
       }
     },
     transitions: {

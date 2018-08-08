@@ -1,5 +1,5 @@
 <template>
-    <div class="container" v-bind:style="{'width':containerWidth+'px',
+    <div class="container" :style="{'width':containerWidth+'px',
     height:containerWidth/1.5+'px',
     'backgroundSize':containerWidth+'px '+containerWidth/1.5+'px',
     'position':'relative'

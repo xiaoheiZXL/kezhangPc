@@ -119,7 +119,7 @@
   }
 </style>
 <template>
-  <div class="container" v-bind:style="{'width':containerWidth+'px',
+  <div class="container" :style="{'width':containerWidth+'px',
   'height':containerWidth/1.5+'px',
   'backgroundSize':containerWidth+'px '+containerWidth/1.5+'px',
   'position':'relative'
@@ -134,21 +134,21 @@
     'width':containerWidth*69/2144+'px','height':containerWidth*130/2144+'px'}"
     ></a>
     <div class="item clearfix"
-         v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
+         :style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
       <div class="left fl"
-           v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
+           :style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
         <router-link
-          v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*50/2144+'px'}"
+          :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*50/2144+'px'}"
           class="author-btn" :to="'/author/'+stampDesc.logiciansId">{{stampDesc.logiciansName}}
         </router-link>
         <button disabled
-                v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*560/2144+'px','lineHeight':containerWidth*70/2144+'px','backgroundColor':'#d4ccb9'}"></button>
+                :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*560/2144+'px','lineHeight':containerWidth*70/2144+'px','backgroundColor':'#d4ccb9'}"></button>
       </div>
       <div class="right fl"
-           v-bind:style="{'width':containerWidth*590/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
+           :style="{'width':containerWidth*590/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
         <div class="inner-box">
           <div class="content"
-               v-bind:style="{'width':containerWidth*590/2144+'px','height':containerWidth*996/2144+'px'}">
+               :style="{'width':containerWidth*590/2144+'px','height':containerWidth*996/2144+'px'}">
             <!-- 印稿图片 -->
             <div class="yingao-box" v-for="(item, index) in prevList"
                  v-show="item.src!=='https://api.duyin.ren/wu-small.png'">
@@ -160,34 +160,34 @@
       <!-- 印章详情 -->
 
         <div id="authorList" class="outer-box"
-             v-bind:style="{'height':containerWidth*412/2144+'px','bottom':containerWidth*90/2144+'px','left':containerWidth*590/2144+'px'}">
+             :style="{'height':containerWidth*412/2144+'px','bottom':containerWidth*90/2144+'px','left':containerWidth*590/2144+'px'}">
           <div class="inner-box">
             <div class="stamp-desc">
               <!-- 原印 -->
-              <div class="yuanyin" v-bind:style="{
+              <div class="yuanyin" :style="{
 									'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
                 <div class="inner-box">
-                  <div class="content" v-bind:style="{
+                  <div class="content" :style="{
 								'width':containerWidth*540/2144+'px','height':containerWidth*137/2144+'px'}">
                     <strong>释文：</strong>{{stampDesc.chars}}
                   </div>
                 </div>
               </div>
               <!-- 边款 -->
-              <div class="biankuan" v-bind:style="{
+              <div class="biankuan" :style="{
 									'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
                 <div class="inner-box">
-                  <div class="content" v-bind:style="{
+                  <div class="content" :style="{
 										'width':containerWidth*540/2144+'px','height':containerWidth*137/2144+'px'}">
                     <strong>边款：</strong>{{stampSideIntro}}
                   </div>
                 </div>
               </div>
               <!-- 详情 -->
-              <div class="xiangqing" v-bind:style="{
+              <div class="xiangqing" :style="{
 									'width':containerWidth*590/2144+'px','height':containerWidth*137/2144+'px'}">
                 <div class="inner-box">
-                  <div class="content" v-bind:style="{
+                  <div class="content" :style="{
 									'width':containerWidth*540/2144+'px','height':containerWidth*137/2144+'px'}">
                     <strong>详情：</strong>{{stampIntro}}
                   </div>
@@ -197,8 +197,8 @@
           </div>
         </div>
       <button class="show-desc"
-              v-bind:style="{'width':containerWidth*60/2144+'px','height':containerWidth*460/2144+'px','marginTop':containerWidth*685/2144+'px'}"
-              v-on:click="toggleShow">
+              :style="{'width':containerWidth*60/2144+'px','height':containerWidth*460/2144+'px','marginTop':containerWidth*685/2144+'px'}"
+              @click="toggleShow">
         搜索
       </button>
     </div>
@@ -227,6 +227,10 @@
       }
     },
     created() {
+      this.stampId = this.$route.params.stampId;
+      this.loadStampDesc();
+    },
+    activated(){
       this.stampId = this.$route.params.stampId;
       this.loadStampDesc();
     },

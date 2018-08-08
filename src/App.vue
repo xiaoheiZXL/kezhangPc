@@ -2,11 +2,11 @@
   <div id="app">
       <keep-alive>
           <!--<router-view v-if="$route.meta.keep_alive"></router-view>-->
-          <router-view v-if="$route.meta.keep_alive"></router-view>
-      </keep-alive>
+          <!--<router-view v-if="$route.meta.keep_alive"></router-view>-->
+      <!--</keep-alive>-->
       <!--<router-view v-if="!$route.meta.keep_alive"></router-view>-->
       <!--.keep_alive">-->
-    <!--<router-view/></keep-alive>-->
+    <router-view/></keep-alive>
   </div>
 </template>
 

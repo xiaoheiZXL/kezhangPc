@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-bind:style="{'width':containerWidth+'px',
+  <div class="container" :style="{'width':containerWidth+'px',
 	  'height':containerWidth/1.5+'px',
 	  'backgroundSize':containerWidth+'px '+containerWidth/1.5+'px',
 	  'position':'relative'}">
@@ -13,22 +13,22 @@
     'width':containerWidth*69/2144+'px','height':containerWidth*130/2144+'px'}"
     ></a>
     <div class="author clearfix"
-         v-bind:style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
+         :style="{'width':containerWidth*756/2144+'px','height':containerWidth*1230/2144+'px','position':'absolute','left':containerWidth*895/2144+'px','backgroundSize':containerWidth*756/2144+'px '+containerWidth*1230/2144+'px','top':0}">
       <div class="left fl"
-           v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
+           :style="{'width':containerWidth*52/2144+'px','height':containerWidth*995/2144+'px','backgroundSize':containerWidth*52/2144+'px '+containerWidth*995/2144+'px','marginTop':containerWidth*146/2144+'px'}">
         <div
-          v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*50/2144+'px'}"
+          :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*30/2144+'px','lineHeight':containerWidth*50/2144+'px'}"
           class="author-btn">{{authorInfo.name}}
         </div>
         <router-link
-          v-bind:style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*560/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
+          :style="{'width':containerWidth*52/2144+'px','height':containerWidth*195/2144+'px','marginTop':containerWidth*560/2144+'px','lineHeight':containerWidth*70/2144+'px'}"
           class="author-work-btn" :to="'/author-work/'+authorInfo.logiciansId"></router-link>
       </div>
       <div class="right fl clearfix"
-           v-bind:style="{'width':containerWidth*650/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
+           :style="{'width':containerWidth*650/2144+'px','height':containerWidth*996/2144+'px','marginTop':containerWidth*146/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
         <!-- 左侧 -->
         <div class="inner-left fl"
-             v-bind:style="{'width':containerWidth*325/2144+'px','height':containerWidth*996/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
+             :style="{'width':containerWidth*325/2144+'px','height':containerWidth*996/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
           <div class="top">
             <div class="photo">
               <img :src="'https://api.duyin.ren/api/aliyun/oss/'+authorInfo.headimgurl" alt="">
@@ -42,7 +42,7 @@
         </div>
         <!-- 右侧 -->
         <div class="inner-right fl"
-             v-bind:style="{'width':containerWidth*325/2144+'px','height':containerWidth*996/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
+             :style="{'width':containerWidth*325/2144+'px','height':containerWidth*996/2144+'px','backgroundSize':containerWidth*170/2144+'px '+containerWidth*996/2144+'px'}">
           <p>{{authorInfo.intro}}</p>
         </div>
       </div>
@@ -83,6 +83,11 @@
       this.authorId = this.$route.params.authorId;
       this.loadAuthorInfo();
     },
+    activated(){
+      this.authorId = this.$route.params.authorId;
+      this.loadAuthorInfo();
+    },
+
     computed: {
       containerWidth: function () {
         return window.innerWidth;

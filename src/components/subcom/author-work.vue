@@ -138,10 +138,20 @@
       this.search();
     },
     activated(){
-      console.log('activated');
-      this.authorId = this.$route.params.authorId;
-      this.search(this.saveAllNum, this.saveLastNum);
+      console.log(this.authorId);
+      console.log(this.$route.params.authorId);
+      if(this.authorId!==this.$route.params.authorId){
+        this.authorId = this.$route.params.authorId;
+        this.search();
+      }
+      // this.search(this.saveAllNum, this.saveLastNum);
       // this.search(this.allNum,this.lastNum);
+    },
+    watch:{
+      $route (to, from) {
+        console.log('to------'+to.name);
+        console.log('from------'+from.name);
+      }
     }
   }
 </script>

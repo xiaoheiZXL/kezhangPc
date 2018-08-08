@@ -7,7 +7,7 @@ import author from '../components/subcom/author.vue'
 import authorWork from '../components/subcom/author-work.vue'
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   mode: 'history',
   base: '/pc',
   routes: [{
@@ -35,3 +35,10 @@ export default new Router({
     }
   }]
 })
+// router.beforeEach((to, from, next) => {
+//   console.log('to---'+to.name);
+//   console.log('from ---- '+from.name);
+//   next()
+// })
+
+export default router
